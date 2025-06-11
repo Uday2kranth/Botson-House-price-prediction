@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boston Housing Price Prediction</title>
+    <!-- Include Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-2xl p-8 space-y-6 bg-white rounded-xl shadow-lg">
+      <h2 class="text-3xl font-bold text-center text-gray-800">
+        Boston Housing Price Prediction
+      </h2>
+      <p class="text-center text-gray-500">
+        Enter the features below to predict the housing price.
+      </p>
+
+      <form action="/predict" method="post" class="space-y-4">
+        <!-- We use a grid for a clean, multi-column layout -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- CRIM -->
+          <div>
+            <label for="CRIM" class="block text-sm font-medium text-gray-700"
+              >CRIM (Per Capita Crime Rate)</label
+            >
+            <input
+              type="text"
+              name="CRIM"
+              id="CRIM"
+              placeholder="e.g., 0.032"
+              required
+              class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <!-- ZN -->
+          <div>
+            <label for="ZN" class="block text-sm font-medium text-gray-700"
+              >ZN (Residential Land Zoned > 25k sq.ft)</label
+            >
+            <input
+              type="text"
+              name="ZN"
+              id="ZN"
+              placeholder="e.g., 0.0"
+              required
+              class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <!-- INDUS -->
+          <div>
+            <label for="INDUS" class="block text-sm font-medium text-gray-700"
+              >INDUS (Non-retail Business Acres)</label
+            >
+            <input
+              type="text"
+              name="INDUS"
+              id="INDUS"
+              placeholder="e.g., 7.07"
+              required
+              class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <!-- CHAS -->
+          <div>
+            <label for="CHAS" class="block text-sm font-medium text-gray-700"
+              >CHAS (Tracts Charles River? 1=yes, 0=no)</label
+            >
+            <input
+              type="text"
+              name="CHAS"
+              id="CHAS"
+              placeholder="0 or 1"
+              required
+              class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <!-- NOX -->
+          <div>
+            <label for="NOX" class="block text-sm font-medium text-gray-700"
+              >NOX (Nitric Oxides Concentration)</label
+            >
+            <input
+              type="text"
+              name="NOX"
+              id="NOX"
+              placeholder="e.g., 0.538"
+              required
+              class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <!-- RM -->
+          <div>
+            <label for="RM" class="block text-sm font-medium text-gray-700"
+              >RM (Avg. Rooms per Dwelling)</label
+            >
+            <input
+              type="text"
+              name="RM"
+              id="RM"
+              placeholder="e.g., 6.575"
+              required
+              class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <!-- AGE -->
+          <div>
+            <label for="AGE" class="block text-sm font-medium text-gray-700"
+              >AGE (Proportion of Owner-occupied Units > 1940)</label
+            >
+            <input
+              type="text"
+              name="AGE"
+              id="AGE"
+              placeholder="e.g., 65.2"
+              required
+              class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <!-- DIS -->
+          <div>
+            <label for="DIS" class="block text-sm font-medium text-gray-700"
+              >DIS (Weighted Distances to Employment Centres)</label
+            >
+            <input
+              type="text"
+              name="DIS"
+              id="DIS"
+              placeholder="e.g., 4.09"
+              required
+              class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <!-- RAD -->
+          <div>
+            <label for="RAD" class="block text-sm font-medium text-gray-700"
+              >RAD (Index of Accessibility to Radial Highways)</label
+            >
+            <input
+              type="text"
+              name="RAD"
+              id="RAD"
+              placeholder="e.g., 1"
+              required
+              class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <!-- TAX -->
+          <div>
+            <label for="TAX" class="block text-sm font-medium text-gray-700"
+              >TAX (Full-value Property-tax Rate / $10k)</label
+            >
+            <input
+              type="text"
+              name="TAX"
+              id="TAX"
+              placeholder="e.g., 296"
+              required
+              class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <!-- PTRATIO -->
+          <div>
+            <label for="PTRATIO" class="block text-sm font-medium text-gray-700"
+              >PTRATIO (Pupil-teacher Ratio)</label
+            >
+            <input
+              type="text"
+              name="PTRATIO"
+              id="PTRATIO"
+              placeholder="e.g., 15.3"
+              required
+              class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <!-- B -->
+          <div>
+            <label for="B" class="block text-sm font-medium text-gray-700"
+              >B (1000(Bk - 0.63)^2)</label
+            >
+            <input
+              type="text"
+              name="B"
+              id="B"
+              placeholder="e.g., 396.90"
+              required
+              class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+
+          <!-- LSTAT (This will span both columns on smaller screens) -->
+          <div class="md:col-span-2">
+            <label for="LSTAT" class="block text-sm font-medium text-gray-700"
+              >LSTAT (% Lower Status of Population)</label
+            >
+            <input
+              type="text"
+              name="LSTAT"
+              id="LSTAT"
+              placeholder="e.g., 4.98"
+              required
+              class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+          <input
+            type="submit"
+            value="Predict Price"
+            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer transition-colors duration-300"
+          />
+        </div>
+      </form>
+
+      <!-- Prediction Result Area -->
+      {% if prediction_text %}
+      <div
+        class="mt-6 p-4 bg-green-100 border border-green-300 text-green-800 rounded-lg text-center"
+      >
+        <h3 class="text-xl font-semibold">{{ prediction_text }}</h3>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
