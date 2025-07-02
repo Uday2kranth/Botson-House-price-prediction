@@ -29,7 +29,7 @@ The final deployed model uses *XGBoost*, a powerful gradient boosting algorithm.
 - Web app development with Flask
 - Deployment using Render.com
 
-🔗 *[Live Demo – Click Here to View the Deployed Model](#)*  
+🔗 *[Live Demo – Click Here to View the Deployed Model](https://botson-house-price-prediction.onrender.com)*  
 <!-- Replace the # above with your actual Render or deployment link -->
 
 ---
